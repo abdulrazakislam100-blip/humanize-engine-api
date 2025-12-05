@@ -2,8 +2,7 @@ app = "humanize-engine-api"
 primary_region = "cdg"
 
 [build]
-  builder = "heroku/buildpacks:20"
-
+# Using Dockerfile for build
 [env]
   PORT = "8080"
 
