@@ -3,8 +3,8 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from openai import OpenAI
 
-client = OpenAI(api_key=os.environ["OPENAI_API_KEY"])
-
+def get_client():
+    return OpenAI(api_key=os.environ["OPENAI_API_KEY"])
 app = FastAPI()
 
 class TextIn(BaseModel):
@@ -22,7 +22,7 @@ SYSTEM_PROMPT = (
 @app.post("/humanize", response_model=TextOut)
 async def humanize_text(body: TextIn):
     user_text = body.text.strip()
-    response = client.chat.completions.create(
+    response = get_client().chat.completions.create(
         model="gpt-4.1-mini",  # or 'o3-mini' if enabled on your account
         messages=[
             {"role": "system", "content": SYSTEM_PROMPT},
