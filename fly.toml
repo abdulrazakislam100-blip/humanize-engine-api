@@ -1,8 +1,6 @@
 app = "humanize-engine-api"
 primary_region = "cdg"
 
-[build]
-# Using Dockerfile for build
 [env]
   PORT = "8080"
 
